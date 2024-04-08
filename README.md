@@ -1,6 +1,6 @@
-# Timeless Tomes - React Frontend App
+# Flourish and Blotts - React Frontend App
 
-Welcome to Timeless Tomes, your go-to destination for discovering and purchasing timeless literary treasures online. This React frontend app provides a user-friendly interface for browsing our vast collection of books, making purchases, and exploring literary recommendations.
+Welcome to Flourish and Blotts, your go-to destination for discovering and purchasing timeless literary treasures online. This React frontend app provides a user-friendly interface for browsing our vast collection of books, making purchases, and exploring literary recommendations.
 
 ## Features
 
@@ -11,7 +11,7 @@ Welcome to Timeless Tomes, your go-to destination for discovering and purchasing
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/krisg9/timeless-tomes.git
+git clone https://github.com/krisg9/flourish-and-blotts.git
 ```
 
 ## Author
