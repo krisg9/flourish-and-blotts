@@ -11,7 +11,7 @@ Welcome to Timeless Tomes, your go-to destination for discovering and purchasing
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/timeless-tomes.git
+git clone https://github.com/krisg9/timeless-tomes.git
 ```
 
 ## Author
