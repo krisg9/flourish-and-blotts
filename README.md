@@ -13,3 +13,7 @@ Welcome to Timeless Tomes, your go-to destination for discovering and purchasing
 ```bash
 git clone https://github.com/your-username/timeless-tomes.git
 ```
+
+## Author
+
+- [Kristiyan Georgiev](https://github.com/krisg9) - Matrnr.: 583313
