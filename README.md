@@ -1,19 +1,30 @@
-# Timeless Tomes - React Frontend App
+# React + TypeScript + Vite
 
-Welcome to Timeless Tomes, your go-to destination for discovering and purchasing timeless literary treasures online. This React frontend app provides a user-friendly interface for browsing our vast collection of books, making purchases, and exploring literary recommendations.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- **TBA**
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Installation
+## Expanding the ESLint configuration
 
-1. Clone the repository:
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-```bash
-git clone https://github.com/krisg9/timeless-tomes.git
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
 ```
 
-## Author
-
-- [Kristiyan Georgiev](https://github.com/krisg9) - Matrnr.: 583313
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
