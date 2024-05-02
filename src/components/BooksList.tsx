@@ -22,10 +22,9 @@ const BooksList = () => {
 			} catch (err) {
 				setError(err as Error);
 			} finally {
-				setLoading(false); // Ensure loading is set to false in any case
+				setLoading(false);
 			}
 		};
-
 		fetchBooks();
 	}, []);
 
@@ -61,8 +60,7 @@ const BooksList = () => {
 						sx={{
 							display: "flex",
 						}}
-					/>{" "}
-					{}
+					/>
 				</Box>
 			) : error ? (
 				<Box
