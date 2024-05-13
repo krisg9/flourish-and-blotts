@@ -8,9 +8,9 @@ const theme = createTheme({
 			dark: "#00402B",
 		},
 		secondary: {
-			main: "#5C2D40", // Deep plum
-			light: "#7A425A",
-			dark: "#3B1E29",
+			main: "#63AB47",
+			light: "#c0ddb5",
+			dark: "#3b662a",
 		},
 		background: {
 			default: "#F3E5AB", // Light parchment

@@ -25,6 +25,13 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
 							borderColor: "primary.main",
 							borderWidth: 3,
 						},
+						"&:hover fieldset": {
+							borderColor: "primary.main",
+						},
+						"&.Mui-focused fieldset": {
+							borderColor: "primary.main",
+							borderWidth: 3,
+						},
 					},
 				}}
 				fullWidth
@@ -35,9 +42,10 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
 			/>
 			<Button
 				size="large"
+				className="search-button"
 				variant="contained"
-				color="primary"
 				onClick={handleSearch}
+				color="primary"
 			>
 				Search
 			</Button>

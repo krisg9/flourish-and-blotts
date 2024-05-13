@@ -4,15 +4,17 @@ import {
 	Card,
 	CardContent,
 	CardMedia,
-	Divider,
+	Tooltip,
 	Typography,
 } from "@mui/material";
 
-interface PropTypes {
+import no_image_available from "./../assets/no_image_available.jpg";
+
+interface BookProps {
 	book: Book;
 }
 
-const BookCard = ({ book }: PropTypes) => {
+const BookCard = ({ book }: BookProps) => {
 	return (
 		<Card
 			sx={{
@@ -26,18 +28,33 @@ const BookCard = ({ book }: PropTypes) => {
 		>
 			<CardMedia
 				component="img"
-				alt={book.title}
+				alt={`Image of ${book.title}`}
 				height="auto"
-				image={book.cover}
+				image={book.cover !== "" ? book.cover : no_image_available}
 			/>
 			<CardContent sx={{ flex: "1 1 auto" }}>
-				<Typography variant="h5">{book.title}</Typography>
-				<Typography variant="subtitle2">{book.subtitle}</Typography>
+				<Tooltip
+					title=<Typography sx={{ fontSize: "2em" }}>{book.title}</Typography>
+					enterDelay={1000}
+					leaveDelay={200}
+				>
+					<Typography
+						variant="h4"
+						gutterBottom
+						sx={{
+							whiteSpace: "nowrap",
+							overflow: "hidden",
+							textOverflow: "ellipsis",
+						}}
+					>
+						{book.title}
+					</Typography>
+				</Tooltip>
+				<Typography variant="subtitle1">{book.subtitle}</Typography>
 				<Typography variant="h5" color="primary">
 					{book.price}
 				</Typography>
 			</CardContent>
-			<Divider />
 			<CardContent>
 				<ButtonGroup>
 					<Button variant="contained" color="primary">

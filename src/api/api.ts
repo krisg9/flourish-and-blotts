@@ -21,7 +21,7 @@ export const getBookByIsbn = async (isbn: string): Promise<Book> => {
 	return fetch(`${baseUrl}/books/${isbn}`)
 		.then((res: Response) => {
 			if (!res.ok) {
-				throw new Error(`Failed to fetch book: ${res}`);
+				throw new Error(`Failed to fetch book with following ISBN: ${isbn}`);
 			}
 			return res.json();
 		})

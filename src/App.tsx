@@ -9,14 +9,16 @@ import theme from "./theme";
 function App() {
 	return (
 		<div>
-			<ThemeProvider theme={theme}>
-				<CssBaseline />
-				<NavBar />
-				<Toolbar />
-				<Header />
-				<BooksList />
-				<Footer />
-			</ThemeProvider>
+			<CssBaseline>
+				<ThemeProvider theme={theme}>
+					<CssBaseline />
+					<NavBar />
+					<Toolbar />
+					<Header />
+					<BooksList />
+					<Footer />
+				</ThemeProvider>
+			</CssBaseline>
 		</div>
 	);
 }
