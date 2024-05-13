@@ -1,18 +1,22 @@
 import { Box, Link, Typography } from "@mui/material";
+import theme from "../theme";
 
 function Copyright() {
 	return (
-		<Box sx={{ paddingTop: "20px", paddingBottom: "20px" }}>
-			<Typography variant="body2" color="primary.main">
+		<Box
+			sx={{
+				py: "2em",
+				color: theme.palette.primary.main,
+			}}
+		>
+			<Typography variant="body2">
 				{"Copyright © "}
-				<Link
-					color="inherit"
-					href="https://github.com/krisg9/flourish-and-blotts"
-				>
+				<Link href="https://github.com/krisg9/flourish-and-blotts">
 					Flourish and Blotts
 				</Link>{" "}
 				{new Date().getFullYear()}
-				{"."}
+				{". "}
+				<Link mx={2}>About Us</Link> <Link mx={2}>Legal Notice</Link>{" "}
 			</Typography>
 		</Box>
 	);

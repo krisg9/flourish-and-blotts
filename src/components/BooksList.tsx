@@ -25,7 +25,7 @@ const BooksList = () => {
 					numPages: 123,
 					author: "Some random dude",
 					publisher: "Some random publisher",
-					price: "1244.5",
+					price: "$1244.5",
 					cover: "",
 				});
 				setBooks(fetchedBooks);
@@ -97,7 +97,13 @@ const BooksList = () => {
 						}
 					>
 						{filteredBooks.map((book) => (
-							<Grid item xs={12} sm={6} md={4} key={book.isbn}>
+							<Grid
+								item
+								xs={12}
+								sm={6}
+								md={filteredBooks.length === 1 ? 6 : 4}
+								key={book.isbn}
+							>
 								<BookCard book={book} key={book.isbn} />
 							</Grid>
 						))}

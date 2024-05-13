@@ -16,10 +16,6 @@ const NavBar = () => {
 			color="primary"
 			sx={{
 				color: theme.palette.primary.main,
-				".nav-button": {
-					my: 0.8,
-					display: "block",
-				},
 			}}
 		>
 			<Toolbar>
