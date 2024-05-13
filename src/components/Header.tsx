@@ -1,8 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import "fontfaceobserver";
 import "@creative-fonts/harry-p";
 
-function Header() {
+const Header = () => {
 	return (
 		<Box sx={{ paddingTop: "1.5em", paddingBottom: "2em" }}>
 			<Typography variant="h1" sx={{ fontFamily: "Harry P" }}>
@@ -10,6 +9,6 @@ function Header() {
 			</Typography>
 		</Box>
 	);
-}
+};
 
 export default Header;

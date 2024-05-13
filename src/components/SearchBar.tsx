@@ -12,6 +12,12 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
 		setIsbn(e.target.value);
 	};
 
+	const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === "Enter") {
+			onSearch(isbn.trim());
+		}
+	};
+
 	const handleSearch = () => {
 		onSearch(isbn.trim());
 	};
@@ -39,6 +45,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
 				variant="outlined"
 				value={isbn}
 				onChange={handleInputChange}
+				onKeyPress={handleKeyPress}
 			/>
 			<Button
 				size="large"
