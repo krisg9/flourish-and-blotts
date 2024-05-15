@@ -14,6 +14,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import no_image_available from "./../assets/no_image_available.jpg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface BookProps {
 	book: Book;
@@ -68,9 +69,11 @@ const BookCard = ({ book }: BookProps) => {
 			</CardContent>
 			<CardContent>
 				<ButtonGroup size="large">
-					<Button variant="contained" color="primary">
-						Details
-					</Button>
+					<Link to={`/book/${book.isbn}`}>
+						<Button variant="contained" color="primary">
+							Details
+						</Button>
+					</Link>
 					<Button variant="outlined" color="primary">
 						Add to Cart
 					</Button>

@@ -5,7 +5,7 @@ import App from "./App.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BooksList from "./components/BooksList.tsx";
 import { getBookByIsbn } from "./api/api.ts";
-import BookDetailsScreen from "./pages/BookDetails.tsx";
+import BookDetails from "./pages/BookDetails.tsx";
 import AboutUs from "./pages/AboutUs.tsx";
 
 const router = createBrowserRouter([
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/book/:isbn",
-				element: <BookDetailsScreen />,
+				element: <BookDetails />,
 				loader: ({ params }) => {
 					if (params.isbn) {
 						return getBookByIsbn(params.isbn);

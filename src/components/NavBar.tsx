@@ -6,7 +6,6 @@ import {
 	Box,
 	IconButton,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import theme from "../theme";
 import { Link } from "react-router-dom";
 
@@ -31,9 +30,7 @@ const NavBar = () => {
 						borderRadius: "10%",
 						color: "white",
 					}}
-				>
-					<MenuIcon />
-				</IconButton>
+				></IconButton>
 				<Typography variant="h6" style={{ flexGrow: 1 }}></Typography>
 				<Box display="flex" alignItems="center" gap={2} m={2}>
 					<Link to="/">
