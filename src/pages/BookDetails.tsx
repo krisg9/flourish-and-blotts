@@ -1,6 +1,6 @@
 import { Box, Container } from "@mui/material";
 import { useLoaderData } from "react-router-dom";
-import BookCard from "./BookCard";
+import BookCard from "../components/BookCard";
 
 const BookDetailsScreen = () => {
 	const book = useLoaderData() as Book;

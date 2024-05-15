@@ -1,5 +1,6 @@
 import { Box, Link, Typography } from "@mui/material";
 import theme from "../theme";
+import { Link as RouterLink } from "react-router-dom";
 
 function Copyright() {
 	return (
@@ -16,7 +17,10 @@ function Copyright() {
 				</Link>{" "}
 				{new Date().getFullYear()}
 				{". "}
-				<Link mx={2}>About Us</Link> <Link mx={2}>Legal Notice</Link>{" "}
+				<RouterLink to="/about">
+					<Link mx={2}>About Us</Link>
+				</RouterLink>
+				<Link mx={2}>Legal Notice</Link>{" "}
 			</Typography>
 		</Box>
 	);

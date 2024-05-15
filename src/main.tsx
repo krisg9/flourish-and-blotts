@@ -4,8 +4,9 @@ import * as ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BooksList from "./components/BooksList.tsx";
-import BookDetailsScreen from "./components/BookDetails.tsx";
 import { getBookByIsbn } from "./api/api.ts";
+import BookDetailsScreen from "./pages/BookDetails.tsx";
+import AboutUs from "./pages/AboutUs.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
 						throw new Error("Could not find item!");
 					}
 				},
+			},
+			{
+				path: "/about",
+				element: <AboutUs />,
 			},
 		],
 	},

@@ -41,9 +41,11 @@ const NavBar = () => {
 							Home
 						</Button>
 					</Link>
-					<Button size="large" variant="contained" className="nav-button">
-						About
-					</Button>
+					<Link to="/about">
+						<Button size="large" variant="contained" className="nav-button">
+							About
+						</Button>
+					</Link>
 				</Box>
 			</Toolbar>
 		</AppBar>
