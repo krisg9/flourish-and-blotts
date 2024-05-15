@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import theme from "../theme";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
 	return (
@@ -35,9 +36,11 @@ const NavBar = () => {
 				</IconButton>
 				<Typography variant="h6" style={{ flexGrow: 1 }}></Typography>
 				<Box display="flex" alignItems="center" gap={2} m={2}>
-					<Button size="large" variant="contained" className="nav-button">
-						Home
-					</Button>
+					<Link to="/">
+						<Button size="large" variant="contained" className="nav-button">
+							Home
+						</Button>
+					</Link>
 					<Button size="large" variant="contained" className="nav-button">
 						About
 					</Button>

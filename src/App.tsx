@@ -2,9 +2,9 @@ import { CssBaseline, ThemeProvider, Toolbar } from "@mui/material";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
-import BooksList from "./components/BooksList";
 import Footer from "./components/Footer";
 import theme from "./theme";
+import { Outlet } from "react-router-dom";
 
 function App() {
 	return (
@@ -15,7 +15,7 @@ function App() {
 					<NavBar />
 					<Toolbar />
 					<Header />
-					<BooksList />
+					<Outlet />
 					<Footer />
 				</ThemeProvider>
 			</CssBaseline>
