@@ -33,3 +33,26 @@ export const getBookByIsbn = async (isbn: string): Promise<Book> => {
 			throw err;
 		});
 };
+
+export const updateBook = async (book: Book): Promise<Book> => {
+	return fetch(`${baseUrl}/books/${book.isbn}`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(book),
+	})
+		.then((res) => {
+			if (!res.ok) {
+				throw new Error(`Failed to POST book: ${book} `);
+			}
+			return res.json();
+		})
+		.then((data: Book) => {
+			return data;
+		})
+		.catch((err) => {
+			console.error(err);
+			throw err;
+		});
+};

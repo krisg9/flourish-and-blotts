@@ -7,6 +7,7 @@ import BooksList from "./components/BooksList.tsx";
 import { getBookByIsbn } from "./api/api.ts";
 import BookDetails from "./pages/BookDetails.tsx";
 import AboutUs from "./pages/AboutUs.tsx";
+import PostForm from "./pages/PostForm.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
 						throw new Error("Could not find item!");
 					}
 				},
+			},
+			{
+				path: "/book/",
+				element: <PostForm />,
 			},
 			{
 				path: "/about",
