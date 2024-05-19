@@ -36,7 +36,7 @@ export const getBookByIsbn = async (isbn: string): Promise<Book> => {
 
 export const updateBook = async (book: Book): Promise<Book> => {
 	return fetch(`${baseUrl}/books/${book.isbn}`, {
-		method: "POST",
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
@@ -44,7 +44,7 @@ export const updateBook = async (book: Book): Promise<Book> => {
 	})
 		.then((res) => {
 			if (!res.ok) {
-				throw new Error(`Failed to POST book: ${book} `);
+				throw new Error(`Failed to PUT book: ${book} `);
 			}
 			return res.json();
 		})

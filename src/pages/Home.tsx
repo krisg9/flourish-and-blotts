@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Grid, CircularProgress, Box, Alert, Typography } from "@mui/material";
 import { getAllBooks, getBookByIsbn } from "../api/api";
-import SearchBar from "./SearchBar";
-import BookCard from "./BookCard";
+import SearchBar from "../components/SearchBar";
+import BookCard from "../components/BookCard";
 
-const BooksList = () => {
+const Home = () => {
 	const [books, setBooks] = useState<Book[]>([]);
 	const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
@@ -114,4 +114,4 @@ const BooksList = () => {
 	);
 };
 
-export default BooksList;
+export default Home;

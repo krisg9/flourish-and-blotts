@@ -3,11 +3,11 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import BooksList from "./components/BooksList.tsx";
 import { getBookByIsbn } from "./api/api.ts";
 import BookDetails from "./pages/BookDetails.tsx";
 import AboutUs from "./pages/AboutUs.tsx";
 import PostForm from "./pages/PostForm.tsx";
+import Home from "./pages/Home.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "",
-				element: <BooksList />,
+				element: <Home />,
 			},
 			{
 				path: "/book/:isbn",
