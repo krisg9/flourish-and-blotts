@@ -18,7 +18,7 @@ const BooksList = () => {
 			try {
 				const fetchedBooks = await getAllBooks();
 				fetchedBooks.push({
-					title: "Random book",
+					title: "Cool random book",
 					subtitle: "Random subtitle",
 					isbn: "1234",
 					abstract: "Very cool random book",
