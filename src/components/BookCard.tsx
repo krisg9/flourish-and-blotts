@@ -63,6 +63,9 @@ const BookCard = ({ book }: BookProps) => {
 					</Typography>
 				</Tooltip>
 				<Typography variant="subtitle1">{book.subtitle}</Typography>
+				<Typography pt={2} variant="subtitle2">
+					{book.publisher}
+				</Typography>
 				<Typography variant="h5" color="primary">
 					{book.price}
 				</Typography>
