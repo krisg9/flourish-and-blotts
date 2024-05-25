@@ -5,6 +5,7 @@ Welcome to Flourish and Blotts, your go-to destination for discovering and purch
 ## Features
 
 - Listing of products
+- Search for a book by ISBN
 
 ## Installation
 
@@ -12,6 +13,21 @@ Welcome to Flourish and Blotts, your go-to destination for discovering and purch
 
 ```bash
 git clone https://github.com/krisg9/flourish-and-blotts.git
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Run dev server
+```bash
+npm run dev
+```
+
+4. Start the bookmonkey-api
+```bash
+bookmonkey-api
 ```
 
 ## Author
