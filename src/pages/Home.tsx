@@ -9,7 +9,7 @@ const Home = () => {
 	useEffect(() => {
 		const intervalId = setInterval(refresh, 2 * 1000);
 		return () => clearInterval(intervalId);
-	}, []);
+	}, [refresh]);
 
 	if (fetchState === "loading") {
 		return (
