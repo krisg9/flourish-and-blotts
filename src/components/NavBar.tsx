@@ -33,7 +33,7 @@ const NavBar = () => {
 				></IconButton>
 				<Typography variant="h6" style={{ flexGrow: 1 }}></Typography>
 				<Box display="flex" alignItems="center" gap={2} m={2}>
-					<Link to={"/book/"}>
+					<Link to={"/book/add"}>
 						<Button size="large" variant="contained" className="nav-button">
 							Post book
 						</Button>

@@ -8,6 +8,7 @@ import BookDetails from "./pages/BookDetails.tsx";
 import AboutUs from "./pages/AboutUs.tsx";
 import PostForm from "./pages/PostForm.tsx";
 import Home from "./pages/Home.tsx";
+import ErrorPage from "./pages/ErrorPage.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -17,10 +18,12 @@ const router = createBrowserRouter([
 			{
 				path: "",
 				element: <Home />,
+				errorElement: <ErrorPage />,
 			},
 			{
 				path: "/book/:isbn",
 				element: <BookDetails />,
+				errorElement: <ErrorPage />,
 				loader: ({ params }) => {
 					if (params.isbn) {
 						return getBookByIsbn(params.isbn);
@@ -30,12 +33,18 @@ const router = createBrowserRouter([
 				},
 			},
 			{
-				path: "/books",
+				path: "/book/add",
 				element: <PostForm />,
+				errorElement: <ErrorPage />,
 			},
 			{
 				path: "/about",
 				element: <AboutUs />,
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: "*",
+				element: <ErrorPage />,
 			},
 		],
 	},
