@@ -12,7 +12,7 @@ export const getAllBooks = async (): Promise<Book[]> => {
 			return data;
 		})
 		.catch((err) => {
-			console.error("Eerror fetching books.", err);
+			console.error("Error fetching books.", err);
 			throw err;
 		});
 };

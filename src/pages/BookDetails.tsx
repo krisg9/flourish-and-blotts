@@ -14,10 +14,10 @@ const BookDetails = () => {
 				alignItems="flex-start"
 				style={{ padding: "20px" }}
 			>
-				<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Grid item xs={12} sm={7} md={8} lg={5}>
 					<img src={book.cover} alt="Book Cover" />
 				</Grid>
-				<Grid item xs={12} sm={6} md={8} lg={9} style={{ paddingLeft: "1em" }}>
+				<Grid item xs={12} sm={5} md={4} lg={7} style={{ paddingLeft: "1em" }}>
 					<Typography variant="h3" gutterBottom>
 						{book.title}
 					</Typography>

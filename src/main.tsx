@@ -30,7 +30,7 @@ const router = createBrowserRouter([
 				},
 			},
 			{
-				path: "/book/",
+				path: "/books",
 				element: <PostForm />,
 			},
 			{
