@@ -1,5 +1,25 @@
 const baseUrl: string = "http://localhost:4730";
 
+export const getBooksByPage = async (
+	page: number,
+	limit: number,
+): Promise<Book[]> => {
+	return fetch(`${baseUrl}/books?_page=${page}&_limit=${limit}`)
+		.then((res) => {
+			if (!res.ok) {
+				throw new Error("Failed to fetch books.");
+			}
+			return res.json();
+		})
+		.then((data: Book[]) => {
+			return data;
+		})
+		.catch((err) => {
+			console.error("Error fetching books.", err);
+			throw err;
+		});
+};
+
 export const getAllBooks = async (): Promise<Book[]> => {
 	return fetch(`${baseUrl}/books?_limit=50`)
 		.then((res) => {
