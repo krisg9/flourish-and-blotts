@@ -35,7 +35,7 @@ const NavBar = () => {
 				<Box display="flex" alignItems="center" gap={2} m={2}>
 					<Link to={"/book/add"}>
 						<Button size="large" variant="contained" className="nav-button">
-							Post book
+							Add book
 						</Button>
 					</Link>
 					<Link to="/">

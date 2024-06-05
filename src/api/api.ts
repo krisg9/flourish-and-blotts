@@ -1,5 +1,21 @@
 const baseUrl: string = "http://localhost:4730";
 
+export const deleteBook = async (book: Book) => {
+	return fetch(`${baseUrl}/books/${book.isbn}`, {
+		method: "DELETE",
+	})
+		.then((res) => {
+			if (!res.ok) {
+				throw new Error(`Failed to delete the book: ${book}`);
+			}
+			return res.json();
+		})
+		.catch((err) => {
+			console.error("Error adding book.", err);
+			throw err;
+		});
+};
+
 export const addBook = async (book: Book) => {
 	return fetch(`${baseUrl}/books`, {
 		method: "POST",

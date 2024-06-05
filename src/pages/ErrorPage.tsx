@@ -1,12 +1,9 @@
-import { Link, useRouteError } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Alert, Box, Button, Typography } from "@mui/material";
 
 const ErrorPage = () => {
-	const error = useRouteError();
-	console.error(error);
-
 	return (
-		<div>
+		<>
 			<Box
 				display="flex"
 				justifyContent="center"
@@ -36,7 +33,7 @@ const ErrorPage = () => {
 					</Link>
 				</Alert>
 			</Box>
-		</div>
+		</>
 	);
 };
 

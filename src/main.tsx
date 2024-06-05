@@ -4,11 +4,11 @@ import * as ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { getBookByIsbn } from "./api/api.ts";
-import BookDetails from "./pages/BookDetails.tsx";
+import BookDetails, { bookDetailsLoader } from "./pages/BookDetails.tsx";
 import AboutUs from "./pages/AboutUs.tsx";
-import PostForm from "./pages/PostForm.tsx";
 import Home from "./pages/Home.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
+import AddBookForm from "./pages/AddBookForm.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -24,17 +24,11 @@ const router = createBrowserRouter([
 				path: "/book/:isbn",
 				element: <BookDetails />,
 				errorElement: <ErrorPage />,
-				loader: ({ params }) => {
-					if (params.isbn) {
-						return getBookByIsbn(params.isbn);
-					} else {
-						throw new Error("Could not find item!");
-					}
-				},
+				loader: bookDetailsLoader,
 			},
 			{
 				path: "/book/add",
-				element: <PostForm />,
+				element: <AddBookForm />,
 				errorElement: <ErrorPage />,
 			},
 			{

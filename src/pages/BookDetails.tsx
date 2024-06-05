@@ -1,8 +1,23 @@
-import { Button, Grid, Paper, Typography } from "@mui/material";
-import { useLoaderData } from "react-router-dom";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { deleteBook, getBookByIsbn } from "../api/api";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+export const bookDetailsLoader = async ({ params }: LoaderFunctionArgs) => {
+	const { isbn } = params;
+	const book = await getBookByIsbn(isbn ?? "");
+
+	return book;
+};
 
 const BookDetails = () => {
 	const book = useLoaderData() as Book;
+
+	const handleDelete = async () => {
+		await deleteBook(book);
+		window.location.href = "/";
+	};
+
 	return (
 		<Paper
 			elevation={3}
@@ -40,9 +55,27 @@ const BookDetails = () => {
 					<Typography variant="h4" gutterBottom>
 						Price: {book.price}
 					</Typography>
-					<Button variant="contained" color="primary">
-						Buy Now
-					</Button>
+					<Box
+						sx={{
+							display: "flex",
+							justifyContent: "center",
+							margin: 3,
+							gap: 2,
+						}}
+					>
+						<Button size="large" variant="contained" color="primary">
+							Buy Now
+						</Button>
+						<Button
+							size="large"
+							variant="contained"
+							color="error"
+							onClick={handleDelete}
+						>
+							{" "}
+							Delete <DeleteIcon />
+						</Button>
+					</Box>
 				</Grid>
 			</Grid>
 		</Paper>
