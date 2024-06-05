@@ -7,7 +7,7 @@ const Home = () => {
 	const { books, fetchState, error, refresh } = useBooks();
 
 	useEffect(() => {
-		const intervalId = setInterval(refresh, 2 * 1000);
+		const intervalId = setInterval(refresh, 30 * 1000);
 		return () => clearInterval(intervalId);
 	}, [refresh]);
 

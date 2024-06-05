@@ -1,5 +1,28 @@
 const baseUrl: string = "http://localhost:4730";
 
+export const addBook = async (book: Book) => {
+	return fetch(`${baseUrl}/books`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(book),
+	})
+		.then((res) => {
+			if (!res.ok) {
+				throw new Error("Failed to add the book.");
+			}
+			return res.json();
+		})
+		.then((data: Book) => {
+			return data;
+		})
+		.catch((err) => {
+			console.error("Error adding book.", err);
+			throw err;
+		});
+};
+
 export const getBooksByPage = async (
 	page: number,
 	limit: number,
