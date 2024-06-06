@@ -5,6 +5,11 @@ Welcome to Flourish and Blotts, your go-to destination for discovering and purch
 ## Features
 
 - Listing of products
+- Details page for a single book
+- CRUD for all books
+- Error Screen
+- About Us page
+- custom fetchBooks hook which refreshes every 60 seconds
 
 ## Installation
 
@@ -12,6 +17,21 @@ Welcome to Flourish and Blotts, your go-to destination for discovering and purch
 
 ```bash
 git clone https://github.com/krisg9/flourish-and-blotts.git
+```
+2. Install dependecies:
+
+```bash
+npm install
+```
+
+## Start the application
+
+```bash
+npm run dev
+```
+
+```bash
+bookmonkey-api
 ```
 
 ## Author
