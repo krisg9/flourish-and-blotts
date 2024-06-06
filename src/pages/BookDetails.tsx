@@ -1,7 +1,8 @@
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
-import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import { deleteBook, getBookByIsbn } from "../api/api";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 export const bookDetailsLoader = async ({ params }: LoaderFunctionArgs) => {
 	const { isbn } = params;
@@ -72,9 +73,13 @@ const BookDetails = () => {
 							color="error"
 							onClick={handleDelete}
 						>
-							{" "}
-							Delete <DeleteIcon />
+							<DeleteIcon /> Delete
 						</Button>
+						<Link to={`/book/${book.isbn}/edit`}>
+							<Button size="large" variant="contained" color="primary">
+								<EditIcon /> Edit
+							</Button>
+						</Link>
 					</Box>
 				</Grid>
 			</Grid>
