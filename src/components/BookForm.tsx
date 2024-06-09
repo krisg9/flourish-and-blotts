@@ -27,7 +27,7 @@ const BookForm = ({ initialBook, formTitle, onSubmit }: BookFormProps) => {
 	return (
 		<Paper
 			elevation={3}
-			style={{ padding: "20px", minHeight: "300px", borderRadius: "1em" }}
+			style={{ padding: "3em", minHeight: "50%", borderRadius: "2em" }}
 		>
 			<Box
 				component="form"
@@ -36,12 +36,12 @@ const BookForm = ({ initialBook, formTitle, onSubmit }: BookFormProps) => {
 					justifyItems: "center",
 					display: "flex",
 					flexDirection: "column",
-					gap: 3,
+					gap: 4,
 					marginX: "4em",
-					paddingY: "3em",
+					paddingY: "4em",
 				}}
 			>
-				<h2>{formTitle}</h2>
+				<h1>{formTitle}</h1>
 				<FormControl>
 					<TextField
 						name="title"

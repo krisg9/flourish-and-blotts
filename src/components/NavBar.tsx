@@ -1,13 +1,7 @@
-import {
-	AppBar,
-	Toolbar,
-	Typography,
-	Button,
-	Box,
-	IconButton,
-} from "@mui/material";
+import { AppBar, Toolbar, Button, Box } from "@mui/material";
 import theme from "../theme";
 import { Link } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
 
 const NavBar = () => {
 	return (
@@ -18,29 +12,16 @@ const NavBar = () => {
 				color: theme.palette.primary.main,
 			}}
 		>
-			<Toolbar>
-				<IconButton
-					size="large"
-					edge="start"
-					color="primary"
-					aria-label="menu"
-					className="nav-button"
-					sx={{
-						mr: 2,
-						borderRadius: "10%",
-						color: "white",
-					}}
-				></IconButton>
-				<Typography variant="h6" style={{ flexGrow: 1 }}></Typography>
+			<Toolbar sx={{ justifyContent: "center" }}>
 				<Box display="flex" alignItems="center" gap={2} m={2}>
 					<Link to={"/book/add"}>
 						<Button size="large" variant="contained" className="nav-button">
-							Add book
+							Add Book
 						</Button>
 					</Link>
 					<Link to="/">
 						<Button size="large" variant="contained" className="nav-button">
-							Home
+							<HomeIcon />
 						</Button>
 					</Link>
 					<Link to="/about">
