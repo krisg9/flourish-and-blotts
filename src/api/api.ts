@@ -1,5 +1,34 @@
 const baseUrl: string = "http://localhost:4730";
 
+export const getBooksByPage = async (
+	pageUrl: string = `${baseUrl}/books?_page=1&limit=11`,
+): Promise<{ books: Book[]; pagination: any }> => {
+	return fetch(pageUrl)
+		.then((res) => {
+			if (!res.ok) {
+				throw new Error("Failed to fetch books.");
+			}
+			const linkHeader = res.headers.get("Link");
+			const pagination = parseLinkHeader(linkHeader);
+			return res.json().then((data) => ({ books: data, pagination }));
+		})
+		.catch((err) => {
+			console.error("Error fetching books.", err);
+			throw err;
+		});
+};
+
+const parseLinkHeader = (header: string | null) => {
+	if (!header) return {};
+	const links = header.split(",").reduce((acc, link) => {
+		const [url, rel] = link.split(";").map((part) => part.trim());
+		const cleanUrl = url.slice(1, -1); // Remove angle brackets
+		const cleanRel = rel.split("=")[1].replace(/"/g, ""); // Remove quotes
+		acc[cleanRel] = cleanUrl;
+		return acc;
+	}, {});
+	return links;
+};
 export const deleteBook = async (book: Book) => {
 	return fetch(`${baseUrl}/books/${book.isbn}`, {
 		method: "DELETE",
@@ -35,26 +64,6 @@ export const addBook = async (book: Book) => {
 		})
 		.catch((err) => {
 			console.error("Error adding book.", err);
-			throw err;
-		});
-};
-
-export const getBooksByPage = async (
-	page: number,
-	limit: number,
-): Promise<Book[]> => {
-	return fetch(`${baseUrl}/books?_page=${page}&_limit=${limit}`)
-		.then((res) => {
-			if (!res.ok) {
-				throw new Error("Failed to fetch books.");
-			}
-			return res.json();
-		})
-		.then((data: Book[]) => {
-			return data;
-		})
-		.catch((err) => {
-			console.error("Error fetching books.", err);
 			throw err;
 		});
 };

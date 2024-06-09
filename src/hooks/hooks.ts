@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
-import { getAllBooks } from "../api/api";
+import { getBooksByPage } from "../api/api";
 
 export const useBooks = () => {
 	const [books, setBooks] = useState<Book[]>([]);
 	const [fetchState, setFetchState] = useState<FetchState>("initial");
 	const [error, setError] = useState<Error | null>(null);
+	const [pagination, setPagination] = useState<{
+		first?: string;
+		prev?: string;
+		next?: string;
+		last?: string;
+	}>({});
 
-	const fetchBooks = async () => {
+	const fetchBooks = async (pageUrl: string) => {
 		setFetchState("loading");
 		setError(null);
 
 		try {
-			const fetchedBooks = await getAllBooks();
+			const { books: fetchedBooks, pagination } = await getBooksByPage(pageUrl);
 			fetchedBooks.push({
 				title: "Cool random book",
 				subtitle: "Random subtitle",
@@ -24,6 +30,7 @@ export const useBooks = () => {
 				cover: "",
 			});
 			setBooks(fetchedBooks);
+			setPagination(pagination);
 			setFetchState("success");
 		} catch (err) {
 			setError(err as Error);
@@ -37,6 +44,7 @@ export const useBooks = () => {
 	}, []);
 
 	const refresh = () => fetchBooks();
+	//const setPage = (page: number) => fetchBooks(page);
 
-	return { books, fetchState, error, refresh };
+	return { books, fetchState, error, refresh, pagination, fetchBooks };
 };
