@@ -1,7 +1,7 @@
 const baseUrl: string = "http://localhost:4730";
 
 export const getBooksByPage = async (
-	pageUrl: string = `${baseUrl}/books?_page=1&limit=11`,
+	pageUrl: string = `${baseUrl}/books?_page=1&_limit=12`,
 ): Promise<{ books: Book[]; pagination: any }> => {
 	return fetch(pageUrl)
 		.then((res) => {
@@ -9,7 +9,8 @@ export const getBooksByPage = async (
 				throw new Error("Failed to fetch books.");
 			}
 			const linkHeader = res.headers.get("Link");
-			const pagination = parseLinkHeader(linkHeader);
+			const pagination = parseLinkHeader(linkHeader ?? "");
+			console.log(pagination);
 			return res.json().then((data) => ({ books: data, pagination }));
 		})
 		.catch((err) => {
@@ -18,17 +19,31 @@ export const getBooksByPage = async (
 		});
 };
 
-const parseLinkHeader = (header: string | null) => {
-	if (!header) return {};
-	const links = header.split(",").reduce((acc, link) => {
-		const [url, rel] = link.split(";").map((part) => part.trim());
-		const cleanUrl = url.slice(1, -1); // Remove angle brackets
-		const cleanRel = rel.split("=")[1].replace(/"/g, ""); // Remove quotes
-		acc[cleanRel] = cleanUrl;
-		return acc;
-	}, {});
+interface LinkHeader {
+	[rel: string]: string;
+}
+
+function parseLinkHeader(header: string): LinkHeader {
+	const links: LinkHeader = {};
+
+	const parts = header.split(",");
+
+	parts.forEach((part) => {
+		const section = part.split(";");
+		if (section.length !== 2) return;
+
+		const url = section[0].trim().replace(/<(.*)>/, "$1");
+		const relMatch = section[1].trim().match(/rel="(.*)"/);
+
+		if (relMatch) {
+			const rel = relMatch[1];
+			links[rel] = url;
+		}
+	});
+
 	return links;
-};
+}
+
 export const deleteBook = async (book: Book) => {
 	return fetch(`${baseUrl}/books/${book.isbn}`, {
 		method: "DELETE",

@@ -18,17 +18,6 @@ export const useBooks = () => {
 
 		try {
 			const { books: fetchedBooks, pagination } = await getBooksByPage(pageUrl);
-			fetchedBooks.push({
-				title: "Cool random book",
-				subtitle: "Random subtitle",
-				isbn: "1234",
-				abstract: "Very cool random book",
-				numPages: 123,
-				author: "Some random dude",
-				publisher: "Some random publisher",
-				price: "$1244.5",
-				cover: "",
-			});
 			setBooks(fetchedBooks);
 			setPagination(pagination);
 			setFetchState("success");
