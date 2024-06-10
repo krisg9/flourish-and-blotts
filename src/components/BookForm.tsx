@@ -6,9 +6,15 @@ interface BookFormProps {
 	initialBook: Book;
 	formTitle: string;
 	onSubmit: (book: Book) => void;
+	isEditable: boolean;
 }
 
-const BookForm = ({ initialBook, formTitle, onSubmit }: BookFormProps) => {
+const BookForm = ({
+	initialBook,
+	formTitle,
+	onSubmit,
+	isEditable,
+}: BookFormProps) => {
 	const [book, setBook] = useState(initialBook);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,16 +67,18 @@ const BookForm = ({ initialBook, formTitle, onSubmit }: BookFormProps) => {
 						variant="outlined"
 					/>
 				</FormControl>
-				<FormControl>
-					<TextField
-						name="isbn"
-						label="ISBN"
-						value={book.isbn}
-						onChange={handleChange}
-						variant="outlined"
-						required
-					/>
-				</FormControl>
+				{!isEditable && (
+					<FormControl>
+						<TextField
+							name="isbn"
+							label="ISBN"
+							value={book.isbn}
+							onChange={handleChange}
+							variant="outlined"
+							required
+						/>
+					</FormControl>
+				)}
 				<FormControl>
 					<TextField
 						name="abstract"

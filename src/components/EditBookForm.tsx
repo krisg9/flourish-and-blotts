@@ -25,6 +25,7 @@ const EditBook = () => {
 			initialBook={initialBook}
 			formTitle="Edit Book"
 			onSubmit={handleUpdateBook}
+			isEditable={true}
 		/>
 	);
 };

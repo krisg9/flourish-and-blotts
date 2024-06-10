@@ -24,6 +24,7 @@ const AddBookForm = () => {
 			initialBook={book}
 			formTitle={"Add Book"}
 			onSubmit={handleSubmit}
+			isEditable={false}
 		/>
 	);
 };
