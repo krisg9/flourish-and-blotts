@@ -9,3 +9,5 @@ interface Book {
 	price: string;
 	cover: string;
 }
+
+type FetchState = "initial" | "loading" | "success" | "error";
