@@ -10,6 +10,10 @@ import {
 } from "@mui/material";
 import BookCard from "../components/BookCard";
 import { useBooks } from "../hooks/hooks";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
 
 const Home = () => {
 	const { books, fetchState, error, refresh, pagination, fetchBooks } =
@@ -94,7 +98,7 @@ const Home = () => {
 							disabled={!pagination.first}
 							onClick={() => handlePageChange(pagination.first)}
 						>
-							First
+							<FirstPageIcon />
 						</Button>
 						<Button
 							variant="contained"
@@ -102,7 +106,7 @@ const Home = () => {
 							disabled={!pagination.prev}
 							onClick={() => handlePageChange(pagination.prev)}
 						>
-							Previous
+							<ArrowBackIosNewIcon />
 						</Button>
 						<Button
 							variant="contained"
@@ -110,7 +114,7 @@ const Home = () => {
 							disabled={!pagination.next}
 							onClick={() => handlePageChange(pagination.next)}
 						>
-							Next
+							<ArrowForwardIosIcon />
 						</Button>
 						<Button
 							variant="contained"
@@ -118,7 +122,7 @@ const Home = () => {
 							disabled={!pagination.last}
 							onClick={() => handlePageChange(pagination.last)}
 						>
-							Last
+							<LastPageIcon />
 						</Button>
 					</Stack>
 				</Box>

@@ -10,7 +10,6 @@ export const getBooksByPage = async (
 			}
 			const linkHeader = res.headers.get("Link");
 			const pagination = parseLinkHeader(linkHeader ?? "");
-			console.log(pagination);
 			return res.json().then((data) => ({ books: data, pagination }));
 		})
 		.catch((err) => {

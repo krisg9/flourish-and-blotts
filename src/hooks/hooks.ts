@@ -12,7 +12,7 @@ export const useBooks = () => {
 		last?: string;
 	}>({});
 
-	const fetchBooks = async (pageUrl: string) => {
+	const fetchBooks = async (pageUrl?: string) => {
 		setFetchState("loading");
 		setError(null);
 
@@ -33,7 +33,6 @@ export const useBooks = () => {
 	}, []);
 
 	const refresh = () => fetchBooks();
-	//const setPage = (page: number) => fetchBooks(page);
 
 	return { books, fetchState, error, refresh, pagination, fetchBooks };
 };
