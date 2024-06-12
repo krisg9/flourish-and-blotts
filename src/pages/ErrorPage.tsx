@@ -26,7 +26,16 @@ const ErrorPage = () => {
 				height="100%"
 			>
 				<Alert
-					icon={<ErrorOutlineIcon sx={{ fontSize: "60px" }} />}
+					icon={
+						<ErrorOutlineIcon
+							sx={{
+								fontSize: "60px",
+								alignSelf: "flex-start",
+								marginTop: "8px",
+								marginLeft: "8px",
+							}}
+						/>
+					}
 					severity="error"
 					style={{
 						width: "60%",
@@ -36,7 +45,9 @@ const ErrorPage = () => {
 						borderRadius: "2em",
 					}}
 				>
-					<AlertTitle sx={{ fontSize: "80px" }}>Oops...</AlertTitle>
+					<AlertTitle sx={{ fontSize: "80px", paddingTop: "16px" }}>
+						Oops...
+					</AlertTitle>
 					<Stack sx={{ gap: "2em" }}>
 						<Typography variant="h5">Something went wrong!</Typography>
 						<Typography variant="h5">{errorMessage}</Typography>

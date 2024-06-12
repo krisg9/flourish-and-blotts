@@ -1,13 +1,5 @@
 import { useEffect } from "react";
-import {
-	Grid,
-	CircularProgress,
-	Box,
-	Alert,
-	Typography,
-	Button,
-	Stack,
-} from "@mui/material";
+import { Grid, CircularProgress, Box, Button, Stack } from "@mui/material";
 import BookCard from "../components/BookCard";
 import { useBooks } from "../hooks/hooks";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -25,9 +17,7 @@ const Home = () => {
 	}, [refresh]);
 
 	const handlePageChange = (pageUrl?: string) => {
-		if (pageUrl) {
-			fetchBooks(pageUrl);
-		}
+		fetchBooks(pageUrl);
 	};
 
 	if (fetchState === "loading") {
@@ -52,22 +42,7 @@ const Home = () => {
 	}
 
 	if (fetchState === "error") {
-		return (
-			<>
-				<Box
-					display="flex"
-					justifyContent="center"
-					alignItems="center"
-					height="100%"
-				>
-					<Alert severity="error">
-						<Typography variant="h6">
-							An error occurred while fetching books: {error?.message}
-						</Typography>
-					</Alert>
-				</Box>
-			</>
-		);
+		throw error;
 	}
 
 	if (fetchState === "success") {

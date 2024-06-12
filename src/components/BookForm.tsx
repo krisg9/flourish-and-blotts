@@ -1,6 +1,6 @@
 import { Box, Button, FormControl, Paper, TextField } from "@mui/material";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface BookFormProps {
 	initialBook: Book;
@@ -16,6 +16,7 @@ const BookForm = ({
 	isEditable,
 }: BookFormProps) => {
 	const [book, setBook] = useState(initialBook);
+	const navigate = useNavigate();
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
@@ -141,11 +142,14 @@ const BookForm = ({
 					>
 						Save
 					</Button>
-					<Link to={"/"}>
-						<Button size="large" variant="contained" color="error">
-							Cancel
-						</Button>
-					</Link>
+					<Button
+						size="large"
+						variant="contained"
+						color="error"
+						onClick={() => navigate(-1)}
+					>
+						Cancel
+					</Button>
 				</Box>
 			</Box>
 		</Paper>
