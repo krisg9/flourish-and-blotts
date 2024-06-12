@@ -9,7 +9,7 @@ Welcome to Flourish and Blotts, your go-to destination for discovering and purch
 - CRUD for all books
 - Error Screen
 - About Us page
-- custom fetchBooks hook which refreshes every 60 seconds
+- custom useBooks hook for fetching book data
 
 ## Installation
 
@@ -28,10 +28,6 @@ npm install
 
 ```bash
 npm run dev
-```
-
-```bash
-bookmonkey-api
 ```
 
 2. Install dependencies
