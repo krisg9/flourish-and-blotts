@@ -1,8 +1,14 @@
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
-import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import {
+	Link,
+	LoaderFunctionArgs,
+	useLoaderData,
+	useNavigate,
+} from "react-router-dom";
 import { deleteBook, getBookByIsbn } from "../api/api";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 export const bookDetailsLoader = async ({ params }: LoaderFunctionArgs) => {
 	const { isbn } = params;
@@ -14,6 +20,8 @@ export const bookDetailsLoader = async ({ params }: LoaderFunctionArgs) => {
 const BookDetails = () => {
 	const book = useLoaderData() as Book;
 
+	const navigate = useNavigate();
+
 	const handleDelete = async () => {
 		await deleteBook(book);
 		window.location.href = "/";
@@ -22,13 +30,27 @@ const BookDetails = () => {
 	return (
 		<Paper
 			elevation={3}
-			style={{ padding: "20px", minHeight: "300px", borderRadius: "1em" }}
+			style={{
+				padding: "20px",
+				minHeight: "300px",
+				borderRadius: "1em",
+			}}
 		>
+			<Box sx={{ position: "absolute", marginBottom: "300px" }}>
+				<Button
+					color="primary"
+					variant="contained"
+					size="large"
+					onClick={() => navigate(-1)}
+				>
+					<ArrowBackIosNewIcon />
+				</Button>
+			</Box>
 			<Grid
 				container
 				justifyContent="center"
 				alignItems="flex-start"
-				style={{ padding: "20px" }}
+				style={{ paddingTop: "5em" }}
 			>
 				<Grid item xs={12} sm={7} md={8} lg={5}>
 					<img src={book.cover} alt="Book Cover" />
