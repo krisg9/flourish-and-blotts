@@ -11,3 +11,16 @@ interface Book {
 }
 
 type FetchState = "initial" | "loading" | "success" | "error";
+
+interface User {
+	email: string;
+	role: UserRole;
+	id: number;
+}
+
+type UserRole = "admin" | "non-admin" | "";
+
+interface UserLoginRequest {
+	email: string;
+	password: string;
+}

@@ -1,5 +1,25 @@
 const baseUrl: string = "http://localhost:4730";
 
+export const postLogin = async (userRequest: UserLoginRequest) => {
+	return fetch(`{baseUrl}/login`, {
+		method: "POST",
+		body: JSON.stringify(userRequest),
+	})
+		.then((res) => {
+			if (!res.ok) {
+				throw Error("Failed to log in. Network error");
+			}
+			return res.json();
+		})
+		.then((data) => {
+			return data.user as User;
+		})
+		.catch((err: Error) => {
+			console.error("Error occurred: " + err.message);
+			throw err;
+		});
+};
+
 export const getBooksByPage = async (
 	pageUrl: string = `${baseUrl}/books?_page=1&_limit=12`,
 ): Promise<{ books: Book[]; pagination: any }> => {
