@@ -9,6 +9,8 @@ import Home from "./pages/Home.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import AddBookForm from "./pages/AddBookForm.tsx";
 import EditBookForm from "./components/EditBookForm.tsx";
+import LogInPage from "./pages/LogInPage.tsx";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -17,18 +19,30 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "",
-				element: <Home />,
+				element: (
+					<ProtectedRoute>
+						<Home />
+					</ProtectedRoute>
+				),
 				errorElement: <ErrorPage />,
 			},
 			{
 				path: "/book/:isbn",
-				element: <BookDetails />,
+				element: (
+					<ProtectedRoute>
+						<BookDetails />
+					</ProtectedRoute>
+				),
 				errorElement: <ErrorPage />,
 				loader: bookDetailsLoader,
 			},
 			{
 				path: "/book/add",
-				element: <AddBookForm />,
+				element: (
+					<ProtectedRoute>
+						<AddBookForm />
+					</ProtectedRoute>
+				),
 				errorElement: <ErrorPage />,
 			},
 			{
@@ -38,9 +52,18 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/book/:isbn/edit",
-				element: <EditBookForm />,
+				element: (
+					<ProtectedRoute>
+						<EditBookForm />
+					</ProtectedRoute>
+				),
 				errorElement: <ErrorPage />,
 				loader: bookDetailsLoader,
+			},
+			{
+				path: "/login",
+				element: <LogInPage />,
+				errorElement: <ErrorPage />,
 			},
 			{
 				path: "*",

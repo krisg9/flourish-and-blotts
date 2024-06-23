@@ -18,7 +18,7 @@ interface User {
 	id: number;
 }
 
-type UserRole = "admin" | "non-admin" | "";
+type UserRole = "admin" | "non-admin";
 
 interface UserLoginRequest {
 	email: string;

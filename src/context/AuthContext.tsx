@@ -1,10 +1,12 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { postLogin } from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
-	role: UserRole;
+	role: UserRole | null;
 	email: string;
-	login: (user: UserLoginRequest) => void;
+	isAuthenticated: boolean;
+	login: (user: UserLoginRequest) => Promise<void>;
 	logout: () => void;
 }
 
@@ -17,22 +19,30 @@ interface AuthContextProviderProps {
 }
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-	const [role, setRole] = useState<UserRole>("");
+	const [role, setRole] = useState<UserRole | null>(null);
 	const [email, setEmail] = useState<string>("");
+
+	const navigate = useNavigate();
+
+	const isAuthenticated = role !== null;
 
 	const login = async (user: UserLoginRequest) => {
 		const userResponse: User = await postLogin(user);
 		setRole(userResponse.role);
 		setEmail(userResponse.email);
+		navigate("/");
 	};
 
 	const logout = () => {
-		setRole("");
+		setRole(null);
 		setEmail("");
+		navigate("/");
 	};
 
 	return (
-		<AuthContext.Provider value={{ role, email, login, logout }}>
+		<AuthContext.Provider
+			value={{ role, email, login, logout, isAuthenticated }}
+		>
 			{children}
 		</AuthContext.Provider>
 	);

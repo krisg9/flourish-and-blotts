@@ -1,8 +1,11 @@
 const baseUrl: string = "http://localhost:4730";
 
 export const postLogin = async (userRequest: UserLoginRequest) => {
-	return fetch(`{baseUrl}/login`, {
+	return fetch(`${baseUrl}/login`, {
 		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
 		body: JSON.stringify(userRequest),
 	})
 		.then((res) => {
