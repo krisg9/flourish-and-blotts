@@ -9,6 +9,7 @@ import { deleteBook, getBookByIsbn } from "../api/api";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { useAuth } from "../context/AuthContext";
 
 export const bookDetailsLoader = async ({ params }: LoaderFunctionArgs) => {
 	const { isbn } = params;
@@ -19,6 +20,8 @@ export const bookDetailsLoader = async ({ params }: LoaderFunctionArgs) => {
 
 const BookDetails = () => {
 	const book = useLoaderData() as Book;
+
+	const { role } = useAuth();
 
 	const navigate = useNavigate();
 
@@ -41,7 +44,7 @@ const BookDetails = () => {
 					color="primary"
 					variant="contained"
 					size="large"
-					onClick={() => navigate(-1)}
+					onClick={() => navigate("/")}
 				>
 					<ArrowBackIosNewIcon />
 				</Button>
@@ -86,22 +89,27 @@ const BookDetails = () => {
 							gap: 2,
 						}}
 					>
-						<Button size="large" variant="contained" color="primary">
-							Buy Now
-						</Button>
-						<Button
-							size="large"
-							variant="contained"
-							color="error"
-							onClick={handleDelete}
-						>
-							<DeleteIcon /> Delete
-						</Button>
-						<Link to={`/book/${book.isbn}/edit`}>
+						{role === "non-admin" ? (
 							<Button size="large" variant="contained" color="primary">
-								<EditIcon /> Edit
+								Buy Now
 							</Button>
-						</Link>
+						) : (
+							<>
+								<Button
+									size="large"
+									variant="contained"
+									color="error"
+									onClick={handleDelete}
+								>
+									<DeleteIcon /> Delete
+								</Button>
+								<Link to={`/book/${book.isbn}/edit`}>
+									<Button size="large" variant="contained" color="primary">
+										<EditIcon /> Edit
+									</Button>
+								</Link>
+							</>
+						)}
 					</Box>
 				</Grid>
 			</Grid>

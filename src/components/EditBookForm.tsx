@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { getBookByIsbn, updateBook } from "../api/api";
 import BookForm from "./BookForm";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const EditBook = () => {
 	const book = useLoaderData() as Book;
 	const [initialBook, setInitialBook] = useState(book);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchBook = async () => {
@@ -17,7 +18,7 @@ const EditBook = () => {
 
 	const handleUpdateBook = async (book: Book) => {
 		const updatedBook = await updateBook(book);
-		window.location.href = `/book/${updatedBook.isbn}`;
+		navigate(`/book/${updatedBook.isbn}`);
 	};
 
 	return (

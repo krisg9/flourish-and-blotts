@@ -15,6 +15,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import no_image_available from "./../assets/no_image_available.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 interface BookProps {
 	book: Book;
@@ -22,6 +23,7 @@ interface BookProps {
 
 const BookCard = ({ book }: BookProps) => {
 	const [likes, setLikes] = useState<number>(0);
+	const { role } = useAuth();
 
 	const likeClickHandler = () => {
 		setLikes((currLikes) => currLikes + 1);
@@ -77,9 +79,13 @@ const BookCard = ({ book }: BookProps) => {
 							Details
 						</Button>
 					</Link>
-					<Button variant="outlined" color="primary">
-						Add to Cart
-					</Button>
+					{role === "non-admin" ? (
+						<Button variant="outlined" color="primary">
+							Add to Cart
+						</Button>
+					) : (
+						<Box paddingX={0.4}></Box>
+					)}
 					<Button variant="contained" onClick={likeClickHandler}>
 						{likes !== 0 ? (
 							<Box display="flex">
