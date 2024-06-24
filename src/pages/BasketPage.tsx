@@ -57,7 +57,12 @@ const dummyItems: Book[] = [
 
 const BasketPage = () => {
 	const calculateTotal = () => {
-		return 100;
+		return dummyItems.reduce((total, book) => {
+			const numericPrice = parseFloat(
+				book.price.replace("$", "").replace(",", "."),
+			);
+			return total + numericPrice;
+		}, 0);
 	};
 
 	return (
@@ -70,41 +75,48 @@ const BasketPage = () => {
 			</Typography>
 			<List>
 				{dummyItems.map((book) => (
-					<ListItem key={book.isbn} sx={{ width: "100%" }}>
-						<Grid container alignItems={"center"} spacing={4}>
-							<Grid item xs={2}>
-								<ListItemAvatar>
-									<Avatar
-										variant="square"
-										sx={{ height: "100px", width: "50px" }}
-										src={book.cover}
-									></Avatar>
-								</ListItemAvatar>
+					<>
+						<ListItem key={book.isbn} sx={{ width: "100%" }}>
+							<Grid container alignItems={"center"} spacing={4}>
+								<Grid item xs={2}>
+									<ListItemAvatar>
+										<Avatar
+											variant="square"
+											sx={{ minHeight: "200px", minWidth: "fit-content" }}
+											src={book.cover}
+											alt={book.title}
+										></Avatar>
+									</ListItemAvatar>
+								</Grid>
+								<Grid item xs={6}>
+									<ListItemText
+										primaryTypographyProps={{ sx: { fontSize: "25px" } }}
+										primary={book.title}
+										secondary={"by " + book.author}
+										secondaryTypographyProps={{ sx: { fontSize: "20px" } }}
+									/>
+								</Grid>
+								<Grid item xs={2}>
+									<Typography sx={{ fontSize: "25px" }} variant="body1">
+										{book.price}
+									</Typography>
+								</Grid>
+								<Grid item xs={2}>
+									<Button variant="contained" size="medium" color="error">
+										<DeleteIcon></DeleteIcon>
+									</Button>
+								</Grid>
 							</Grid>
-							<Grid item xs={6}>
-								<ListItemText
-									primaryTypographyProps={{ sx: { fontSize: "25px" } }}
-									primary={book.title}
-									secondary={book.author}
-									secondaryTypographyProps={{ sx: { fontSize: "20px" } }}
-								/>
-							</Grid>
-							<Grid item xs={2}>
-								<Typography sx={{ fontSize: "25px" }} variant="body1">
-									{book.price} €
-								</Typography>
-							</Grid>
-							<Grid item xs={2}>
-								<Button variant="contained" size="medium" color="error">
-									<DeleteIcon></DeleteIcon>
-								</Button>
-							</Grid>
-						</Grid>
-					</ListItem>
+						</ListItem>
+						<Divider
+							variant="middle"
+							sx={{ borderBottomWidth: 4, backgroundColor: "grey" }}
+						/>
+					</>
 				))}
 			</List>
 			<Grid container justifyContent="flex-end" sx={{ marginY: "2em" }}>
-				<Typography variant="h4">Total: {calculateTotal()} €</Typography>
+				<Typography variant="h4">Total: $ {calculateTotal()}</Typography>
 			</Grid>
 			<Grid container justifyContent="flex-end" style={{ marginTop: "10px" }}>
 				<Button variant="contained" size="large" color="primary">
