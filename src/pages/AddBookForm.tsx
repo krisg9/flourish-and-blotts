@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { addBook } from "../api/api";
 import BookForm from "../components/BookForm";
 
@@ -14,9 +15,11 @@ const AddBookForm = () => {
 		cover: "",
 	};
 
+	const navigate = useNavigate();
+
 	const handleSubmit = async (book: Book) => {
 		const addedBook = await addBook(book);
-		window.location.href = `/book/${addedBook.isbn}`;
+		navigate(`/book/${addedBook.isbn}`);
 	};
 
 	return (

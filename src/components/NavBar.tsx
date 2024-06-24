@@ -3,6 +3,7 @@ import theme from "../theme";
 import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import { useAuth } from "../context/AuthContext";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const NavBar = () => {
 	const { role, logout, isAuthenticated } = useAuth();
@@ -37,7 +38,21 @@ const NavBar = () => {
 						</Button>
 					</Link>
 					{isAuthenticated ? (
-						<Link to="/login">
+						<>
+							{role === "non-admin" ? (
+								<Link to={"/basket"}>
+									<Button
+										size="large"
+										variant="contained"
+										className="nav-button"
+									>
+										<ShoppingCartIcon></ShoppingCartIcon>
+										Basket
+									</Button>
+								</Link>
+							) : (
+								<></>
+							)}
 							<Button
 								size="large"
 								variant="contained"
@@ -46,7 +61,7 @@ const NavBar = () => {
 							>
 								Logout
 							</Button>
-						</Link>
+						</>
 					) : (
 						<></>
 					)}

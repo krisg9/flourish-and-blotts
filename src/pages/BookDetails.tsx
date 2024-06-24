@@ -10,6 +10,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useAuth } from "../context/AuthContext";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export const bookDetailsLoader = async ({ params }: LoaderFunctionArgs) => {
 	const { isbn } = params;
@@ -27,7 +28,7 @@ const BookDetails = () => {
 
 	const handleDelete = async () => {
 		await deleteBook(book);
-		window.location.href = "/";
+		navigate("/");
 	};
 
 	return (
@@ -91,6 +92,7 @@ const BookDetails = () => {
 					>
 						{role === "non-admin" ? (
 							<Button size="large" variant="contained" color="primary">
+								<ShoppingCartIcon></ShoppingCartIcon>
 								Buy Now
 							</Button>
 						) : (

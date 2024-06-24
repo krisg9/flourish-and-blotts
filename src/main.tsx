@@ -11,6 +11,7 @@ import AddBookForm from "./pages/AddBookForm.tsx";
 import EditBookForm from "./components/EditBookForm.tsx";
 import LogInPage from "./pages/LogInPage.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import BasketPage from "./pages/BasketPage.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -59,6 +60,15 @@ const router = createBrowserRouter([
 				),
 				errorElement: <ErrorPage />,
 				loader: bookDetailsLoader,
+			},
+			{
+				path: "/basket",
+				element: (
+					<ProtectedRoute>
+						<BasketPage />
+					</ProtectedRoute>
+				),
+				errorElement: <ErrorPage />,
 			},
 			{
 				path: "/login",

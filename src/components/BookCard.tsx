@@ -11,6 +11,7 @@ import {
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import no_image_available from "./../assets/no_image_available.jpg";
 import { useState } from "react";
@@ -81,7 +82,8 @@ const BookCard = ({ book }: BookProps) => {
 					</Link>
 					{role === "non-admin" ? (
 						<Button variant="outlined" color="primary">
-							Add to Cart
+							<ShoppingCartIcon></ShoppingCartIcon>
+							Buy
 						</Button>
 					) : (
 						<Box paddingX={0.4}></Box>
