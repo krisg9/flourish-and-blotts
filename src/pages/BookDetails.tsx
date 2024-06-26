@@ -22,7 +22,7 @@ export const bookDetailsLoader = async ({ params }: LoaderFunctionArgs) => {
 const BookDetails = () => {
 	const book = useLoaderData() as Book;
 
-	const { role } = useAuth();
+	const { role, addToBasket } = useAuth();
 
 	const navigate = useNavigate();
 
@@ -91,7 +91,12 @@ const BookDetails = () => {
 						}}
 					>
 						{role === "non-admin" ? (
-							<Button size="large" variant="contained" color="primary">
+							<Button
+								size="large"
+								variant="contained"
+								color="primary"
+								onClick={() => addToBasket(book)}
+							>
 								<ShoppingCartIcon></ShoppingCartIcon>
 								Buy Now
 							</Button>

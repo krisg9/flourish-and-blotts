@@ -10,12 +10,17 @@ interface Book {
 	cover: string;
 }
 
+interface Basket {
+	books: Book[];
+}
+
 type FetchState = "initial" | "loading" | "success" | "error";
 
 interface User {
 	email: string;
 	role: UserRole;
 	id: number;
+	basket: Basket;
 }
 
 type UserRole = "admin" | "non-admin";

@@ -24,7 +24,7 @@ interface BookProps {
 
 const BookCard = ({ book }: BookProps) => {
 	const [likes, setLikes] = useState<number>(0);
-	const { role } = useAuth();
+	const { role, addToBasket } = useAuth();
 
 	const likeClickHandler = () => {
 		setLikes((currLikes) => currLikes + 1);
@@ -81,7 +81,11 @@ const BookCard = ({ book }: BookProps) => {
 						</Button>
 					</Link>
 					{role === "non-admin" ? (
-						<Button variant="outlined" color="primary">
+						<Button
+							variant="outlined"
+							color="primary"
+							onClick={() => addToBasket(book)}
+						>
 							<ShoppingCartIcon></ShoppingCartIcon>
 							Buy
 						</Button>

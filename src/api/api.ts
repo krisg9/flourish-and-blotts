@@ -1,5 +1,28 @@
 const baseUrl: string = "http://localhost:4730";
 
+export const updateBasket = async (userId: number, books: Book[]) => {
+	return await fetch(`${baseUrl}/users/${userId}`, {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ basket: { books: books } }),
+	})
+		.then((res) => {
+			if (!res.ok) {
+				throw Error("Failed to update the basket. Network error.");
+			}
+			return res.json();
+		})
+		.then((data) => {
+			return data.basket as Basket;
+		})
+		.catch((err: Error) => {
+			console.error("Error occurred: " + err.message);
+			throw err;
+		});
+};
+
 export const postLogin = async (userRequest: UserLoginRequest) => {
 	return fetch(`${baseUrl}/login`, {
 		method: "POST",
