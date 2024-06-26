@@ -12,6 +12,7 @@ import EditBookForm from "./components/EditBookForm.tsx";
 import LogInPage from "./pages/LogInPage.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import BasketPage from "./pages/BasketPage.tsx";
+import CheckoutPage from "./pages/CheckoutPage.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -73,6 +74,11 @@ const router = createBrowserRouter([
 			{
 				path: "/login",
 				element: <LogInPage />,
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: "/checkout",
+				element: <CheckoutPage />,
 				errorElement: <ErrorPage />,
 			},
 			{

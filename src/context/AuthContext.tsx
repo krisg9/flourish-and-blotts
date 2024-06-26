@@ -9,6 +9,7 @@ interface AuthContextType {
 	basket: Basket;
 	addToBasket: (book: Book) => void;
 	removeFromBasket: (book: Book) => void;
+	clearBasket: () => void;
 	login: (user: UserLoginRequest) => Promise<void>;
 	logout: () => void;
 }
@@ -62,6 +63,11 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 		setBasket(updatedBasket);
 	};
 
+	const clearBasket = async () => {
+		let updatedBasket: Basket = await updateBasket(id, []);
+		setBasket(updatedBasket);
+	};
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -73,6 +79,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 				basket,
 				addToBasket,
 				removeFromBasket,
+				clearBasket,
 			}}
 		>
 			{children}

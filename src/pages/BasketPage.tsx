@@ -15,9 +15,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { PointOfSale } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const BasketPage = () => {
 	const { basket, removeFromBasket } = useAuth();
+	const [total, setTotal] = useState<number>(0);
 
 	const calculateTotal = () => {
 		if (basket.books) {
@@ -29,14 +32,19 @@ const BasketPage = () => {
 					);
 				} catch (err) {
 					console.error(err);
-					throw err;
-				} finally {
 					numericPrice = 0;
 				}
 				return total + numericPrice;
 			}, 0);
+		} else {
+			return 0;
 		}
 	};
+
+	useEffect(() => {
+		const newTotal = calculateTotal();
+		setTotal(newTotal);
+	}, [basket]);
 
 	return (
 		<Paper
@@ -96,13 +104,15 @@ const BasketPage = () => {
 					))}
 			</List>
 			<Grid container justifyContent="flex-end" sx={{ marginY: "2em" }}>
-				<Typography variant="h4">Total: $ {calculateTotal()}</Typography>
+				<Typography variant="h4">Total: $ {total.toFixed(2)}</Typography>
 			</Grid>
 			<Grid container justifyContent="flex-end" style={{ marginTop: "10px" }}>
-				<Button variant="contained" size="large" color="primary">
-					<PointOfSale></PointOfSale>
-					Checkout
-				</Button>
+				<Link to={"/checkout"}>
+					<Button variant="contained" size="large" color="primary">
+						<PointOfSale></PointOfSale>
+						Checkout
+					</Button>
+				</Link>
 			</Grid>
 		</Paper>
 	);
