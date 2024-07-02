@@ -14,13 +14,23 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import { PointOfSale } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { getBasket, updateBasket, updateBook } from "../api/api";
 
 const BasketPage = () => {
-	const { basket, removeFromBasket } = useAuth();
+	const { id } = useAuth();
 	const [total, setTotal] = useState<number>(0);
+	const [basket, setBasket] = useState<Basket>({ books: [] });
+
+	useEffect(() => {
+		const fetchBasket = async () => {
+			const fetchedBasket = await getBasket(id);
+			setBasket(fetchedBasket);
+		};
+		fetchBasket();
+	}, [id]);
 
 	const calculateTotal = () => {
 		if (basket.books) {
@@ -30,6 +40,9 @@ const BasketPage = () => {
 					numericPrice = parseFloat(
 						book.price.replace("$", "").replace(",", "."),
 					);
+					if (isNaN(numericPrice)) {
+						numericPrice = 10;
+					}
 				} catch (err) {
 					console.error(err);
 					numericPrice = 0;
@@ -45,6 +58,12 @@ const BasketPage = () => {
 		const newTotal = calculateTotal();
 		setTotal(newTotal);
 	}, [basket]);
+
+	const handleRemoveItem = async (isbn: string) => {
+		const newBasket = basket.books.filter((book: Book) => book.isbn != isbn);
+		const updatedBasket = await updateBasket(id, newBasket);
+		setBasket(updatedBasket);
+	};
 
 	return (
 		<Paper
@@ -89,7 +108,7 @@ const BasketPage = () => {
 											variant="contained"
 											size="medium"
 											color="error"
-											onClick={() => removeFromBasket(book)}
+											onClick={() => handleRemoveItem(book.isbn)}
 										>
 											<DeleteIcon></DeleteIcon>
 										</Button>

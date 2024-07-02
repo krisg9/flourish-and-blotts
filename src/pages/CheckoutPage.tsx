@@ -1,9 +1,15 @@
 import { Box, Button, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { updateBasket } from "../api/api";
 
 const CheckoutPage = () => {
-	const { clearBasket } = useAuth();
+	const { id } = useAuth();
+
+	const clearBasket = async () => {
+		await updateBasket(id, []);
+	};
+
 	return (
 		<Paper elevation={3} sx={{ padding: "3em", borderRadius: "2em" }}>
 			<Box sx={{ display: "flex", flexDirection: "column", gap: "2em" }}>

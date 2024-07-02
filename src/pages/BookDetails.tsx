@@ -5,7 +5,7 @@ import {
 	useLoaderData,
 	useNavigate,
 } from "react-router-dom";
-import { deleteBook, getBookByIsbn } from "../api/api";
+import { deleteBook, getBasket, getBookByIsbn, updateBasket } from "../api/api";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -22,13 +22,19 @@ export const bookDetailsLoader = async ({ params }: LoaderFunctionArgs) => {
 const BookDetails = () => {
 	const book = useLoaderData() as Book;
 
-	const { role, addToBasket } = useAuth();
+	const { role, id } = useAuth();
 
 	const navigate = useNavigate();
 
 	const handleDelete = async () => {
 		await deleteBook(book);
 		navigate("/");
+	};
+
+	const handleAddToBasket = async (book: Book) => {
+		const basket = await getBasket(id);
+		const updatedBasketBooks = [...basket.books, book];
+		await updateBasket(id, updatedBasketBooks);
 	};
 
 	return (
@@ -95,7 +101,7 @@ const BookDetails = () => {
 								size="large"
 								variant="contained"
 								color="primary"
-								onClick={() => addToBasket(book)}
+								onClick={() => handleAddToBasket(book)}
 							>
 								<ShoppingCartIcon></ShoppingCartIcon>
 								Buy Now

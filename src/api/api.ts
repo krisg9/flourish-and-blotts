@@ -1,5 +1,27 @@
 const baseUrl: string = "http://localhost:4730";
 
+export const getBasket = async (userId: number) => {
+	return await fetch(`${baseUrl}/users/${userId}`, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
+		.then((res) => {
+			if (!res.ok) {
+				throw Error("Failed to get the basket.");
+			}
+			return res.json();
+		})
+		.then((data) => {
+			return data.basket as Basket;
+		})
+		.catch((err: Error) => {
+			console.error("Error occurred: " + err.message);
+			throw err;
+		});
+};
+
 export const updateBasket = async (userId: number, books: Book[]) => {
 	return await fetch(`${baseUrl}/users/${userId}`, {
 		method: "PATCH",

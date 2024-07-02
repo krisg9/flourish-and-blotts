@@ -1,15 +1,12 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { postLogin, updateBasket } from "../api/api";
+import { postLogin } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
+	id: number;
 	role: UserRole | null;
 	email: string;
 	isAuthenticated: boolean;
-	basket: Basket;
-	addToBasket: (book: Book) => void;
-	removeFromBasket: (book: Book) => void;
-	clearBasket: () => void;
 	login: (user: UserLoginRequest) => Promise<void>;
 	logout: () => void;
 }
@@ -25,9 +22,6 @@ interface AuthContextProviderProps {
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 	const [role, setRole] = useState<UserRole | null>(null);
 	const [email, setEmail] = useState<string>("");
-	const [basket, setBasket] = useState<Basket>({
-		books: [],
-	});
 	const [id, setId] = useState<number>(0);
 
 	const navigate = useNavigate();
@@ -38,7 +32,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 		const userResponse: User = await postLogin(user);
 		setRole(userResponse.role);
 		setEmail(userResponse.email);
-		setBasket(userResponse.basket);
 		setId(userResponse.id);
 		navigate("/");
 	};
@@ -49,37 +42,15 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 		navigate("/");
 	};
 
-	const addToBasket = async (book: Book) => {
-		let newBasket: Book[] = [...basket.books, book];
-		let updatedBasket: Basket = await updateBasket(id, newBasket);
-		setBasket(updatedBasket);
-	};
-
-	const removeFromBasket = async (book: Book) => {
-		let newBasket: Book[] = basket.books.filter((bookInBasket: Book) => {
-			return bookInBasket.isbn != book.isbn;
-		});
-		let updatedBasket: Basket = await updateBasket(id, newBasket);
-		setBasket(updatedBasket);
-	};
-
-	const clearBasket = async () => {
-		let updatedBasket: Basket = await updateBasket(id, []);
-		setBasket(updatedBasket);
-	};
-
 	return (
 		<AuthContext.Provider
 			value={{
+				id,
 				role,
 				email,
 				login,
 				logout,
 				isAuthenticated,
-				basket,
-				addToBasket,
-				removeFromBasket,
-				clearBasket,
 			}}
 		>
 			{children}

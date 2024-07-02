@@ -17,6 +17,7 @@ import no_image_available from "./../assets/no_image_available.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { getBasket, updateBasket } from "../api/api";
 
 interface BookProps {
 	book: Book;
@@ -24,10 +25,16 @@ interface BookProps {
 
 const BookCard = ({ book }: BookProps) => {
 	const [likes, setLikes] = useState<number>(0);
-	const { role, addToBasket } = useAuth();
+	const { id, role } = useAuth();
 
 	const likeClickHandler = () => {
 		setLikes((currLikes) => currLikes + 1);
+	};
+
+	const handleAddToBasket = async (book: Book) => {
+		const basket = await getBasket(id);
+		const updatedBasketBooks = [...basket.books, book];
+		await updateBasket(id, updatedBasketBooks);
 	};
 
 	return (
@@ -84,7 +91,7 @@ const BookCard = ({ book }: BookProps) => {
 						<Button
 							variant="outlined"
 							color="primary"
-							onClick={() => addToBasket(book)}
+							onClick={() => handleAddToBasket(book)}
 						>
 							<ShoppingCartIcon></ShoppingCartIcon>
 							Buy
