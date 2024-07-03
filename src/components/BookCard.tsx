@@ -33,8 +33,16 @@ const BookCard = ({ book }: BookProps) => {
 
 	const handleAddToBasket = async (book: Book) => {
 		const basket = await getBasket(id);
-		const updatedBasketBooks = [...basket.books, book];
-		await updateBasket(id, updatedBasketBooks);
+		const bookIndex = basket.books.findIndex(
+			(bookFromBasket) => bookFromBasket.isbn === book.isbn,
+		);
+
+		if (bookIndex !== -1) {
+			basket.books[bookIndex].quantity += 1;
+		} else {
+			basket.books.push({ ...book, quantity: 1 });
+		}
+		await updateBasket(id, basket.books);
 	};
 
 	return (

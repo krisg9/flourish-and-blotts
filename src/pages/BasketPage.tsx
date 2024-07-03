@@ -11,13 +11,14 @@ import {
 	Divider,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import no_image_available from "./../assets/no_image_available.jpg";
 
 import { PointOfSale } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { getBasket, updateBasket, updateBook } from "../api/api";
+import { getBasket, updateBasket } from "../api/api";
 
 const BasketPage = () => {
 	const { id } = useAuth();
@@ -47,7 +48,7 @@ const BasketPage = () => {
 					console.error(err);
 					numericPrice = 0;
 				}
-				return total + numericPrice;
+				return total + numericPrice * book.quantity;
 			}, 0);
 		} else {
 			return 0;
@@ -85,7 +86,7 @@ const BasketPage = () => {
 											<Avatar
 												variant="square"
 												sx={{ minHeight: "200px", minWidth: "fit-content" }}
-												src={book.cover}
+												src={book.cover || no_image_available}
 												alt={book.title}
 											></Avatar>
 										</ListItemAvatar>
@@ -100,7 +101,7 @@ const BasketPage = () => {
 									</Grid>
 									<Grid item xs={2}>
 										<Typography sx={{ fontSize: "25px" }} variant="body1">
-											{book.price}
+											{book.quantity} x {book.price}
 										</Typography>
 									</Grid>
 									<Grid item xs={2}>

@@ -8,6 +8,7 @@ interface Book {
 	publisher: string;
 	price: string;
 	cover: string;
+	quantity?: number;
 }
 
 interface Basket {
