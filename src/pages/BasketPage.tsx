@@ -55,6 +55,12 @@ const BasketPage = () => {
 		}
 	};
 
+	const clearBasket = async () => {
+		await updateBasket(id, []);
+	};
+
+	const checkoutDisabled = basket.books.length === 0;
+
 	useEffect(() => {
 		const newTotal = calculateTotal();
 		setTotal(newTotal);
@@ -127,8 +133,14 @@ const BasketPage = () => {
 				<Typography variant="h4">Total: $ {total.toFixed(2)}</Typography>
 			</Grid>
 			<Grid container justifyContent="flex-end" style={{ marginTop: "10px" }}>
-				<Link to={"/checkout"}>
-					<Button variant="contained" size="large" color="primary">
+				<Link to={checkoutDisabled ? "#" : "/checkout"}>
+					<Button
+						variant="contained"
+						size="large"
+						color="primary"
+						disabled={checkoutDisabled}
+						onClick={() => clearBasket()}
+					>
 						<PointOfSale></PointOfSale>
 						Checkout
 					</Button>
