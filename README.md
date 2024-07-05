@@ -6,10 +6,14 @@ Welcome to Flourish and Blotts, your go-to destination for discovering and purch
 
 - Listing of products
 - Details page for a single book
-- CRUD for all books
 - Error Screen
 - About Us page
 - custom useBooks hook for fetching book data
+- user login page
+- admin
+    - create, update, delete books
+- customer
+    - basket functionality
 
 ## Installation
 
@@ -19,18 +23,6 @@ Welcome to Flourish and Blotts, your go-to destination for discovering and purch
 git clone https://github.com/krisg9/flourish-and-blotts.git
 ```
 2. Install dependecies:
-
-```bash
-npm install
-```
-
-## Start the application
-
-```bash
-npm run dev
-```
-
-2. Install dependencies
 ```bash
 npm install
 ```
@@ -42,7 +34,7 @@ npm run dev
 
 4. Start the bookmonkey-api
 ```bash
-bookmonkey-api
+npx bookmonkey-api
 ```
 
 ## Author
