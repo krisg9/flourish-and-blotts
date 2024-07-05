@@ -11,6 +11,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useAuth } from "../context/AuthContext";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import no_image_available from "./../assets/no_image_available.jpg";
 
 export const bookDetailsLoader = async ({ params }: LoaderFunctionArgs) => {
 	const { isbn } = params;
@@ -71,7 +72,7 @@ const BookDetails = () => {
 				style={{ paddingTop: "5em" }}
 			>
 				<Grid item xs={12} sm={7} md={8} lg={5}>
-					<img src={book.cover} alt="Book Cover" />
+					<img src={book.cover || no_image_available} alt={book.title} />
 				</Grid>
 				<Grid item xs={12} sm={5} md={4} lg={7} style={{ paddingLeft: "1em" }}>
 					<Typography variant="h3" gutterBottom>

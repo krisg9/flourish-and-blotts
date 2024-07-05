@@ -126,6 +126,7 @@ const BookForm = ({
 						name="price"
 						label="Price"
 						value={book.price}
+						inputProps={{ pattern: "^\\$\\d+(\\.\\d{2})?$" }}
 						onChange={handleChange}
 						variant="outlined"
 						required

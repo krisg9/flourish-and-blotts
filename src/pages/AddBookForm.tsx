@@ -11,7 +11,7 @@ const AddBookForm = () => {
 		numPages: 0,
 		author: "",
 		publisher: "",
-		price: "",
+		price: "$",
 		cover: "",
 	};
 
